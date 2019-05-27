@@ -1,0 +1,157 @@
+﻿@using Microsoft.AspNet.Identity;
+<header class="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="brand">
+                        <img src="/Assets/client/uploads/logo1.jpg" alt="logo">
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12 col-right-headtop">
+                    <div class="pull-left">
+                        <form method="get" action="/tim-kiem.html">
+                            @*<input type="text" id="txtKeyword" name="keyword" placeholder="Từ khóa">
+                                <input type="submit" value="Tìm kiếm" id="btnSearch">*@
+
+                            <div class="box-search">
+                                <div class="form-input">
+                                    <input type="text" id="txtKeyword" name="keyword" class="form-control" placeholder="Từ khóa">
+                                    @*<input type="submit" value="Tìm kiếm" id="btnSearch">
+
+                                        <input type="text" class="form-control" placeholder="Tìm kiếm...">*@
+                                    <button type="submit" value="Tìm kiếm" id="btnSearch" class="btn btn__search"><span class="fa fa-search"></span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="menu-top pull-right">
+                        <div class="col-menu-top">
+                            <div class="hotline"><span class="-ap icon-phone-handset"></span> Hotline: 0355.34.8583</div>
+                            <div class="header-top__login">                    
+                                    @using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { @id = "frmLogout" }))
+                                    {
+                                        if (Request.IsAuthenticated)
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="header-top__login">
+                                                <div class="">Xin chào: @User.Identity.GetUserName()</div>
+                                                <ul class="menu-icons__sub">
+                                                    <li class="menu-icons__sub__item"><a class="menu-icon__sub-link"  href="/tai-khoan.html"><i class="fa fa-address-book"></i>Thông tin cá nhân</a></li>
+                                                    <li class="menu-icons__sub__item"><a class="menu-icon__sub-link"  href="#" id="btnLogout"><span class="icon icon-lock_open -ap"></span>Thoát</a></li>
+                                                </ul>
+                                            </div>
+
+
+                                        }
+                                        else
+                                        {
+                                            <div class="header-top__login">
+                                                <div class="title">Tài khoản</div>
+                                                <ul class="menu-icons__sub">
+                                                    <li class="menu-icons__sub__item"><a class="menu-icon__sub-link" href="/dang-nhap.html"><span class="icon icon-lock_outline -ap"></span> Đăng nhập</a></li>
+                                                    <li class="menu-icons__sub__item"><a  class="menu-icon__sub-link" href="/dang-ky.html"><span class="icon icon-lock_open -ap"></span> Đăng ký</a></li>
+                                                </ul>
+                                            </div>
+                                        }
+                                    } 
+                                  
+                                </div>
+                            
+                            <div class="header-top__shopcart">
+                                <div class="icon">
+                                    <span class="-ap icon-cart"></span>
+                                </div>
+                                <div class="headline"><a href="gio-hang.html">Giỏ hàng</a> <span class="number-cart">0</span></div>
+                                @* <div class="dropdown__shop__cart"> *@
+                                @*     <div class="dropdown__head"> *@
+                                @*         <span class="number">0</span> *@
+                                @*         <span class="txt">Sản phẩm trong giỏ hàng</span> *@
+                                @*     </div> *@
+                                @*     <div class="product__shopcart"> *@
+                                @*         <div class="product__list"> *@
+                                @*             <div class="product__list__item"> *@
+                                @*                 <div class="product__img"> *@
+                                @*                     <img src="uploads/product.jpg" alt="Name your Product "> *@
+                                @*                 </div> *@
+                                @*                 <div class="product__name"> *@
+                                @*                     iphone 6 plus *@
+                                @*                     <a class="product__delete"> *@
+                                @*                         <span class="icon -ap icon-trash2"></span> *@
+                                @*                     </a> *@
+                                @*                 </div> *@
+                                @* *@
+                                @*                 <div class="product__price"> *@
+                                @*                     <div class="product__price__old">790.000 <span class="unit">đ</span></div> *@
+                                @*                     <div class="product__price__regular">790.000 <span class="unit">đ</span></div> *@
+                                @*                     <div class="product__quantity"> *@
+                                @*                         <button class="btn-minus btn"> *@
+                                @*                             - *@
+                                @*                         </button> *@
+                                @*                         <input type="text" class="input-number" value="1"> *@
+                                @*                         <button class="btn-plus btn"> *@
+                                @*                             + *@
+                                @*                         </button> *@
+                                @*                         <div class="clearfix"></div> *@
+                                @*                     </div> *@
+                                @* *@
+                                @*                 </div> *@
+                                @* *@
+                                @*                 <div class="clearfix"></div> *@
+                                @*             </div> *@
+                                @*         *@
+                                @*         </div> *@
+                                @*     </div> *@
+                                @*     <div class="dropdown__bottom"> *@
+                                @*         <div class="total">Tổng cộng: <span class="product__price number">9.990.000 <span class="unit"></span>đ</span></div> *@
+                                @*         <button href="#" class="btn__viewcart">Xem giỏ hàng</button> *@
+                                @*         <button href="#" class="btn__checkout">Tiến hành đặt hàng</button> *@
+                                @*     </div> *@
+                                @* </div> *@
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                    <!---->
+
+                </div>
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="container">
+                <nav id="navbar-example" class="navbar navbar-static hidden-xs hidden-sm" role="navigation">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <ul class="collapse navbar-collapse bs-example-js-navbar-collapse menu-category">
+                        <ul class="">
+                            <li class="active-menu">
+                                <a href="/">TRANG CHỦ</a>
+                            </li>
+                            <li class="">
+                                <a href="category.html" class="grant.html">SẢN PHẨM</a>
+                                @{ Html.RenderAction("Category", "Home"); }
+
+                            </li>
+                            <li class="">
+                                <a href="aboutus.html" class="">GIỚI THIỆU</a>
+                            </li>
+                            <li class="">
+                                <a href="new.html" class="">TIN TỨC</a>
+                            </li>
+                            <li>
+                                <a href="contact.html" class="">LIÊN HỆ</a>
+                            </li>
+                        </ul>
+                    </ul>
+                    <!-- /.nav-collapse -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

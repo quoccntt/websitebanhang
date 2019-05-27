@@ -1,0 +1,168 @@
+﻿@model TeduShop.Web.Models.RegisterViewModel
+@using BotDetect.Web.Mvc;
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+<div class="breadcrumb">
+    <div class="container">
+        <a href="index.html" class="li">Trang chủ / </a>
+        <span class="li active">Đăng ký tài khoản </span>
+    </div>
+</div>
+<section class="sec sec__category">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="category__slidebar">
+                    <div class="category__sidebar__box">
+                        <h2 class="sidebar__cat__title">
+                            <a href="">DANH MỤC SẢN PHẨM</a>
+                        </h2>
+                        <div class="sidebar__list">
+                            <ul>
+                                @{ Html.RenderAction("Category", "Home"); }
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <!-- Modal content-->
+                <div class="dangky-content">
+                    <div class="modal-header">
+                        <h2 class="text-center">Đăng ký tài khoản</h2>
+                    </div>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken();
+                        @Html.ValidationSummary(false, "", new { @class = " text-center text-danger" })
+
+                        if (ViewData["SuccessMsg"] != null)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                <strong>Chúc mừng bạn! </strong> đã đăng ký thành công.
+                                <br />Vui lòng click <a href="/dang-nhap.html">vào đây </a>để đăng nhập.
+                            </div>
+                        }
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-7 col-xs-12 col-sm-7 account__input">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="input__label">
+                                                <div class="label">Họ Tên :</div>
+                                            </div>
+                                            <div class="input__wrap">
+                                                @Html.TextBoxFor(model => model.FullName, new { Class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="input__label">
+                                                <div class="label">Tên:</div>
+                                            </div>
+                                            <div class="input__wrap">
+                                                @Html.TextBoxFor(model => model.UserName, new { Class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="input__label">
+                                                <div class="label">Email :</div>
+                                            </div>
+                                            <div class="input__wrap">
+                                                @Html.TextBoxFor(model => model.Email, new { Class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="input__label">
+                                                <div class="label">Địa chỉ :</div>
+                                            </div>
+                                            <div class="input__wrap">
+                                                @Html.TextBoxFor(model => model.Address, new { Class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="input__label">
+                                                <div class="label">Phone:</div>
+                                            </div>
+                                            <div class="input__wrap">
+                                                @Html.TextBoxFor(model => model.PhoneNumber, new { Class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="input__label">
+                                                <div class="label">Mật khẩu:</div>
+                                            </div>
+                                            <div class="input__wrap">
+                                                @Html.PasswordFor(model => model.Password, new { Class = "form-control" })
+                                                @*@{
+                                                    MvcCaptcha registerCaptcha = new MvcCaptcha("registerCaptcha");
+                                                }
+                                                @Html.Captcha(registerCaptcha)
+                                                @Html.TextBox("CaptchaCode")*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="check__action">
+                                            <input type="checkbox" checked class="checkbox">
+                                            <span class="icon"></span>
+                                            Tôi đồng ý mọi điều khoản của Website
+                                        </div>
+                                    </div>
+                                    <div class="form-group login__action">
+                                        <button class="btn btn-submit" type="submit" value="submit">Đăng Ký</button>
+                                    </div>
+                                    <div class="login__note">
+                                        Bạn đã có tài khoản? <a data-toggle="modal" data-target="#register">Đăng ký ngay</a>
+                                    </div>
+
+                                </div>
+
+                                <div class="account_login__social col-md-5 col-xs-12 col-sm-5">
+                                    <div class="title"><span>Đăng nhập với </span></div>
+                                    <div class="list__buttons">
+                                        <button class="btn btn-facebook">
+                                            <span class="-ap icon-facebook icon"></span>
+                                            Đăng nhập với Facebook
+                                        </button>
+                                        <button class="btn btn-google">
+                                            <span class="-ap icon-google icon"></span>
+                                            Đăng nhập với Google
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
+
+

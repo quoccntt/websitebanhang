@@ -1,0 +1,11 @@
+﻿@model IEnumerable<TeduShop.Web.Models.ProductCategoryViewModel>
+
+<ul>
+@foreach (var category in Model.Where(x => x.ParentID == null && x.Status == true ))
+{
+    var url = "/" + category.Alias + ".pc-" + category.ID + ".html";
+
+    <li><a href="@url">@category.Name </a></li>
+  
+}
+</ul>

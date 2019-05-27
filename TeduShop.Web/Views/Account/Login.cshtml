@@ -1,0 +1,93 @@
+﻿@model TeduShop.Web.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="breadcrumb">
+    <div class="container">
+        <a href="index.html" class="li">Trang chủ / </a>
+        <span class="li active">Login </span>
+    </div>
+</div>
+<section class="sec sec__category">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="category__slidebar">
+                    <div class="category__sidebar__box">
+                        <h2 class="sidebar__cat__title">
+                            <a href="">DANH MỤC SẢN PHẨM</a>
+                        </h2>
+                        <div class="sidebar__list">
+                            <ul>
+                                @{ Html.RenderAction("Category", "Home"); }
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <!-- Modal content-->
+                <div class="Login-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title text-center">Đăng nhập</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            @using (Html.BeginForm("Login", "Account", new { returnUrl = @ViewBag.ReturnUrl }, FormMethod.Post))
+                            {
+                                @Html.ValidationSummary(false, "", new { @class = "error" })
+                                <div class="col-md-6 col-xs-12 col-sm-6 account__input">
+                                    <div class="form-group">
+                                        <div class="label">Tên đăng nhập</div>
+
+                                        <div class="input">
+                                            @Html.TextBoxFor(model => model.UserName, new { Class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="label">Mật khẩu</div>
+                                        @Html.PasswordFor(model => model.Password, new { Class = "form-control" })
+                                    </div>
+                                    <div class="remember-login form-group">
+                                        <div class="check__action -radio">
+                                            @Html.CheckBoxFor(model => model.RememberMe)
+
+                                            Ghi nhớ tài khoản
+                                        </div>
+                                    </div>
+                                    <div class="form-group login__action">
+                                        <button type="submit" value="Login" class="btn btn-submit">Đăng nhập</button>
+                                    </div>
+                                    <div class="login__note">
+                                        Bạn chưa có tài khoản? <a data-toggle="modal" data-target="#register">Đăng ký ngay</a>
+                                    </div>
+                                </div>
+                            }
+                            <div class="account_login__social col-md-6 col-xs-12 col-sm-6">
+                                <div class="title"><span>Đăng nhập với </span></div>
+                                <div class="list__buttons">
+                                    <button class="btn btn-facebook">
+                                        <span class="-ap icon-facebook icon"></span>
+                                        Đăng nhập với Facebook
+                                    </button>
+                                    <button class="btn btn-google">
+                                        <span class="-ap icon-google icon"></span>
+                                        Đăng nhập với Google
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

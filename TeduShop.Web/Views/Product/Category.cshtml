@@ -1,0 +1,196 @@
+﻿@model TeduShop.Web.Infrastructure.Core.PaginationSet<TeduShop.Web.Models.ProductViewModel>
+
+@{
+    var category = (TeduShop.Web.Models.ProductCategoryViewModel)ViewBag.Category;
+    var pageIndex = Model.Page;
+    ViewBag.Title = pageIndex == 1 ? category.Name : category.Name + " - Trang " + pageIndex;
+    ViewBag.MetaKeyword = pageIndex == 1 ? category.MetaKeyword : category.MetaKeyword + " - Trang " + pageIndex;
+    ViewBag.MetaDescription = pageIndex == 1 ? category.MetaDescription : category.MetaDescription + " - Trang " + pageIndex;
+    Layout = "~/Views/Shared/Layouts.cshtml";
+
+}
+
+<div class="breadcrumb">
+    <div class="container">
+        <a href="index.html" class="li">Trang chủ / </a>
+        <span class="li active">Sản Phẩm </span>
+    </div>
+</div>
+<section class="sec sec__category">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="category__slidebar">
+                    <div class="category__sidebar__box">
+                        <h2 class="sidebar__cat__title">
+                            <a href="">DANH MỤC SẢN PHẨM</a>
+                        </h2>
+                        <div class="sidebar__list">
+                            <ul>
+                                @{ Html.RenderAction("Category", "Home"); }
+                             
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="category__sidebar__box">
+                        <h2 class="sidebar__cat__title"> Giá</h2>
+
+                        <div id="slider__price"></div>
+                        <div class="slider__price__value">
+                            <span class="name">Từ</span>
+                            <div id="lower-price" class="number"></div>
+                        </div>
+                        <div class="slider__price__value">
+                            <span class="name">Đến</span>
+                            <div id="upper-price" class="number"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <form id="form-list" method="POST" action>
+                    <div id="load-list-data">
+                        <div class="top-list-product-subpage">
+                            <div class="row">
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                    <h2 class="title-sub-category">
+                                        <a href="/@(category.Alias).pc-@(category.ID).html"><span class="number">@category.Name - <span>@Model.TotalCount sản phẩm</span> </span></a>
+                                        @*<h2 class="title-sub-category">
+                                            Điện thoại
+                                            <span class="number">(12 sản phẩm )</span>*@
+                                    </h2>
+                                </div>
+                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                    <div class="clearfix">
+                                        <div class="sort-by-product Floatright">
+                                            <div class="item-dropdow dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    Sắp xếp
+                                                    <span class="caret"></span>
+                                                </a>
+                                                <ul class="dropdown-menu" id="other-sort" aria-labelledby="other-sort">
+                                                    <li><a class="active" href="?page=@Model.Page&sort=popular">Phổ biến</a></li>
+                                                    <li><a href="?page=@Model.Page&sort=new">Mới </a></li>
+                                                    <li><a href="?page=@Model.Page&sort=discount">Khuyến mãi</a></li>
+                                                    <li><a href="?page=@Model.Page&sort=price">Giá: Thấp -> Cao </a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-detai-list-product">
+                            <div class="row">
+                                @foreach (var product in Model.Items)
+                                {
+                                    var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+                                    <div class="list-item  col-md-4 col-sm-4 col-xs-12">
+                                        <div class="item-product hover-action-product style-view-2 product-list-item clearfix">
+                                            <span class="status-product bg-red">HOT</span>
+                                            <div class="img bg-img-112" title="Điện thoại di động Sam Sung J7">
+                                                <a href="@url" title="@product.Name">
+                                                    <img src="@product.Image" alt="@product.Name" class="img-product">
+                                                </a>
+                                            </div>
+                                            <div class="action-product bg-danger-main">
+                                                <a href="product-detail.html" class="item-action">
+                                                    <i class="fa fa-search"></i>
+
+                                                </a>
+                                                <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </a>
+
+                                                <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                    <i class="fa fa-retweet"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            <h4 class="title-info">
+                                                <a href="@url">@product.Name</a>
+                                            </h4>
+                                        </div>
+                                        <div class="price price-inline">
+                                            @if (product.PromotionPrice.HasValue)
+                                            {
+                                                <p class="price-well">
+                                                    @product.PromotionPrice.Value.ToString("N0")
+                                                </p>
+
+                                            }
+                                            <p class="price-before">
+                                                @product.Price.ToString("N0")
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            @if (Model.TotalPages > 1)
+                            {
+                                // Create numeric links
+                                var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+                                var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+
+                                <nav >
+                                    <ul class="pagination">
+                                        @if (Model.Page > 1)
+                                        {
+                                            <li>
+                                                <a href="?page=1" aria-label="First">
+                                                    <i class="fa fa-angle-double-left"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="?page=@(Model.Page-1)" aria-label="Previous">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @for (int i = startPageIndex; i <= endPageIndex; i++)
+                                        {
+                                            if (Model.Page == i)
+                                            {
+                                                <li class="active"><a href="?page=@i" title="Trang @i">@i</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="?page=@i" title="Trang @i">@i</a></li>
+                                            }
+                                        }
+                                        @if (Model.Page < Model.TotalPages)
+                                        {
+                                            <li>
+                                                <a href="?page=@(Model.Page+1)" aria-label="Next">
+                                                    <i class="fa fa-angle-right"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="?page=@Model.TotalPages" aria-label="Last">
+                                                    <i class="fa fa-angle-double-right"></i>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            }
+
+
+                            @*else
+                            {
+                                <div class="text-center">Không có bản ghi nào được tìm thấy.</div>
+                            }*@
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>

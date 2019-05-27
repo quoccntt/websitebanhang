@@ -1,0 +1,1185 @@
+﻿@model TeduShop.Web.Models.HomeViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaKeyword = Model.MetaKeyword;
+    ViewBag.MetaDescription = Model.MetaDescription;
+    Layout = "~/Views/Shared/Layouts.cshtml";
+
+}
+
+<div class="nav-anchor"></div>
+<div class="slider-main hidden-xs">
+    <div class="slider-wrapper theme-default">
+        <div class="slider apollo_slides nivoSlider">
+            <a href="#"><img src="/Assets/client/uploads/slider.jpg" alt="" /></a>
+            <a href="#"><img src="/Assets/client/uploads/slider.jpg" alt="" /></a>
+            <a href="#"><img src="/Assets/client/uploads/slider.jpg" alt="" /></a>
+        </div>
+    </div>
+</div>
+<div class="sec sec-baner__catg ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="list-baner__bn">
+                    <div class="avt">
+                        <a href>
+                            <img src="/Assets/client/uploads/baner-1.jpg" alt="demo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="list-baner__bn">
+                    <div class="avt">
+                        <a href>
+                            <img src="/Assets/client/uploads/baner-2.jpg" alt="demo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="list-baner__bn">
+                    <div class="avt">
+                        <a href>
+                            <img src="/Assets/client/uploads/baner-3.jpg" alt="demo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content-row">
+    <div class="container">
+        <div class="row">
+            <!--danh sach menu san pham  -->
+            <div class="col-sm-8 col-xs-12">
+                <div class="item-block" data-action="products/ProductBlock/productBlock/55" data-method="get">
+                    <div class="box-product tabs-block box-product-style2 box-st">
+
+                        <ul class="nav_block_title nav nav-tabs" role="tablist">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">SẢN PHẨM MỚI 1</a>
+                            </li>
+                            <li class="">
+                                <a href="#tab2" data-toggle="tab">SẢN PHẨM NỔI BẬT</a>
+                            </li>
+                            <li class="">
+                                <a href="#tab3" data-toggle="tab">KHUYẾN MÃI</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content ">
+                            <div id="tab1" class="tab-pane fade in active">
+                                <div class="nav__slider nav-slider__product slider__product hidden-xs">
+                                    <div class="nav prev">
+                                        <span class="icon fa fa-angle-left"></span>
+                                    </div>
+                                    <div class="nav next">
+                                        <span class="icon fa fa-angle-right"></span>
+                                    </div>
+                                </div>
+                                <div class="content-tab-product">
+                                    <div class="tab-content content">
+                                        <div id="box-product-new-55-1505359384" class="tab-content-pane ">
+                                            <div class="slider__product">
+                                                @foreach (var product in Model.LastestProducts)
+                                                {
+                                                    var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+                                                    <div class="item">
+                                                        <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                            <span class="status-product bg-red">HOT</span>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="@product.Name">
+                                                                <a href="@url" title="@product.Name">
+                                                                    <img src="@product.Image" alt="@product.Name" class="img-product img-responsive">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                                <h4 class="title-product">
+                                                                    <a href="@url">@product.Name</a>
+                                                                </h4>
+                                                                <div class="price price-inline">
+                                                                    @if (product.PromotionPrice.HasValue)
+                                                                    {
+                                                                        <p class="price-well">
+                                                                            @product.PromotionPrice.Value.ToString("N0")
+                                                                        </p>
+
+                                                                    }
+                                                                    <p class="price-before">
+                                                                        @product.Price.ToString("N0")
+                                                                    </p>
+
+                                                                </div>
+                                                                <div class="desc-product-thumb">
+                                                                    <p>@product.MetaDescription</p>
+                                                                    <p>tình trạng : @(product.Quantity > 0 ? "còn hàng" : "hết hàng")</p>
+                                                                    <p>Bảo hành : @product.Warranty</p>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="action-product bg-danger-main">
+                                                                <a href="product-detail.html" class="item-action">
+                                                                    <span class="fa fa-search"></span>
+                                                                </a>
+                                                                <a class=" btn-quickview" data-toggle="modal" data-target="@product.ID" data-placement="left" title="Xem nhanh">
+                                                                    <i class="fa fa-shopping-cart"></i>
+                                                                </a>
+                                                                <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                    <span class="fa fa-retweet"></span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab2" class="tab-pane  ">
+                                <div class="nav__slider nav-slider__product slider__product_4 hidden-xs">
+                                    <div class="nav prev">
+                                        <span class="icon fa fa-angle-left"></span>
+                                    </div>
+                                    <div class="nav next">
+                                        <span class="icon fa fa-angle-right"></span>
+                                    </div>
+                                </div>
+                                <div class="content-tab-product">
+                                    <div class="tab-content content">
+                                        <div id="box-product-new-55-1505359384" class="tab-content-pane active">
+                                            <div class="slider__product">
+                                                <div class="item">
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <span class="fa fa-shopping-cart"></span>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <span class="fa fa-shopping-cart"></span>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab3" class="tab-pane  ">
+                                <div class="nav__slider nav-slider__product slider__product_3 hidden-xs">
+                                    <div class="nav prev">
+                                        <span class="icon fa fa-angle-left"></span>
+                                    </div>
+                                    <div class="nav next">
+                                        <span class="icon fa fa-angle-right"></span>
+                                    </div>
+                                </div>
+                                <div class="content-tab-product">
+                                    <div class="tab-content content">
+                                        <div id="box-product-new-55-1505359384" class="tab-content-pane active">
+                                            <div class="slider__product">
+                                                <div class="item">
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="#" class="item-action">
+                                                                <i class="fa fa-search"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-shop-cart " item-id="152" status-store="1">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <i class="fa fa-retweet"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="item">
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-product hover-action-product style-view-2 item-product-note clearfix">
+                                                        <span class="status-product bg-red">HOT</span>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 img bg-img-110" title="Điện thoại di động Sam Sung J7">
+                                                            <a href="#" title="Điện thoại di động Sam Sung J7">
+                                                                <img src="/Assets/client/uploads/sp.png" alt="Điện thoại di động Sam Sung J7" class="img-product img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 info">
+                                                            <h4 class="title-product">
+                                                                <a href="#">Điện thoại di động Sam Sung J7</a>
+                                                            </h4>
+                                                            <div class="price price-inline">
+                                                                <p class="price-well">
+                                                                    2,840,500 đ
+                                                                </p>
+                                                                <p class="price-before">
+                                                                    2,990,000 ₫
+                                                                </p>
+                                                            </div>
+                                                            <div class="desc-product-thumb">
+                                                                <p>Chipset:&nbsp;Qualcomm Snapdragon 410 MSM8916, 1.2 GHz</p>
+                                                                <p>RAM 1 GB/ Bộ nhớ trong 16 GB</p>
+                                                                <p>Dung lượng pin&nbsp;2420 mAh</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="action-product bg-danger-main">
+                                                            <a href="product-detail.html" class="item-action">
+                                                                <span class="fa fa-search"></span>
+                                                            </a>
+                                                            <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                <span class="fa fa-retweet"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end danh sach menu san pham  -->
+            <!--menu-left quang cao fb  -->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="box-fanpage__title">
+                    THEO DÕI CHÚNG TÔI
+                </div>
+                <div class="fanpage__fb">
+                    <img src="/Assets/client/uploads/fanpage2.jpg" alt="">
+                </div>
+            </div>
+            <!--end menu-left quang cao fb  -->
+            <div class="baner-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <a href="@Url" class="item-banner">
+                                <img src="/Assets/client/uploads/abc.jpg" alt="#">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--menu-Category-->
+            <div class="content-row">
+                <div class="container">
+                    <div class="row">
+                        <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
+                        <div class="item-block" data-action="products/ProductBlock/productBlock/55" data-method="get">
+                            <div class="box-product tabs-block box-product-style2 box-st">
+                                <!-- Nav tabs -->
+                                <ul class="nav_block_title nav nav-tabs" role="tablist">
+
+                                    <li class="active">
+                                        <a href="#home" data-toggle="tab">IPHONE</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#menu1" data-toggle="tab">SAM SUNG</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#menu2" data-toggle="tab">OPPO</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#menu3" data-toggle="tab">XIAOMI</a>
+                                    </li>
+
+                                </ul>
+                                <div class="tab-content ">
+
+                                    <div id="home" class="tab-pane fade in active">
+                                        @{
+                                            
+                                            var categoryIphone = (IEnumerable<TeduShop.Web.Models.ProductViewModel>)ViewBag.viewproductIphone;
+                                            foreach (var Iphone in categoryIphone)
+                                            {
+                                                var url1 = "/" + Iphone.Alias + ".p-" + Iphone.ID + ".html";
+                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                                    <div class="row">
+                                                        <div class="item-product hover-action-product style-view-2 list-item clearfix">
+                                                            <span class="status-product bg-red">HOT</span>
+                                                            <div class="img bg-img-112" title="@(Iphone.Name)">
+                                                                <a href="@url1" title="@(Iphone.Name)">
+                                                                    <img src="@(Iphone.Image)" alt="@(Iphone.Name)" class="img-product">
+                                                                </a>
+                                                            </div>
+                                                            <div class="action-product bg-danger-main">
+                                                                <a href="@url1" class="item-action">
+                                                                    <span class="fa fa-search"></span>
+                                                                </a>
+                                                                <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                    <i class="fa fa-shopping-cart"></i>
+                                                                </a>
+                                                                <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                    <span class="fa fa-retweet"></span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="info">
+                                                            <h4 class="title-info">
+                                                                <a href="@url1">@(Iphone.Name)</a>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="price price-inline">
+                                                            <p class="price-well">
+                                                                @(Iphone.PromotionPrice > 0 ? Iphone.PromotionPrice : Iphone.Price )
+                                                            </p>
+                                                            @if (Iphone.PromotionPrice > 0)
+                                                            {
+                                                            <p class="price-before">
+                                                             
+                                                                 @Iphone.Price
+                                                            </p>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <p class="price-before">
+
+                                                                </p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+
+                                    </div>
+                                    <div id="menu1" class="tab-pane fade">
+                                        @{
+
+                                            var categorySamsung = (IEnumerable<TeduShop.Web.Models.ProductViewModel>)ViewBag.viewproductSamsung;
+                                            foreach (var Iphone in categorySamsung)
+                                            {
+                                                var url = "/" + Iphone.Alias + ".p-" + Iphone.ID + ".html";
+                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                                    <div class="row">
+                                                        <div class="item-product hover-action-product style-view-2 list-item clearfix">
+                                                            <span class="status-product bg-red">HOT</span>
+                                                            <div class="img bg-img-112" title="@(Iphone.Name)">
+                                                                <a href="@url" title="@(Iphone.Name)">
+                                                                    <img src="@(Iphone.Image)" alt="@(Iphone.Name)" class="img-product">
+                                                                </a>
+                                                            </div>
+                                                            <div class="action-product bg-danger-main">
+                                                                <a href="@url" class="item-action">
+                                                                    <span class="fa fa-search"></span>
+                                                                </a>
+                                                                <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                    <i class="fa fa-shopping-cart"></i>
+                                                                </a>
+                                                                <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                    <span class="fa fa-retweet"></span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="info">
+                                                            <h4 class="title-info">
+                                                                <a href="@url">@(Iphone.Name)</a>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="price price-inline">
+                                                            <p class="price-well">
+                                                                @(Iphone.PromotionPrice > 0 ? Iphone.PromotionPrice : Iphone.Price )
+                                                            </p>
+                                                            @if (Iphone.PromotionPrice > 0)
+                                                            {
+                                                                <p class="price-before">
+                                                                    @Iphone.Price
+                                                                </p>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <p class="price-before">
+
+                                                                </p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+
+                                    </div>
+                                    <div id="menu2" class="tab-pane fade">
+                                        @{
+
+                                            var viewproductOppo = (IEnumerable<TeduShop.Web.Models.ProductViewModel>)ViewBag.viewproductOppo;
+                                            foreach (var Iphone in viewproductOppo)
+                                            {
+                                                var url = "/" + Iphone.Alias + ".p-" + Iphone.ID + ".html";
+                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                                    <div class="row">
+                                                        <div class="item-product hover-action-product style-view-2 list-item clearfix">
+                                                            <span class="status-product bg-red">HOT</span>
+                                                            <div class="img bg-img-112" title="@(Iphone.Name)">
+                                                                <a href="@url" title="@(Iphone.Name)">
+                                                                    <img src="@(Iphone.Image)" alt="@(Iphone.Name)" class="img-product">
+                                                                </a>
+                                                            </div>
+                                                            <div class="action-product bg-danger-main">
+                                                                <a href="@Url" class="item-action">
+                                                                    <span class="fa fa-search"></span>
+                                                                </a>
+                                                                <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                    <i class="fa fa-shopping-cart"></i>
+                                                                </a>
+                                                                <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                    <span class="fa fa-retweet"></span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="info">
+                                                            <h4 class="title-info">
+                                                                <a href="@url">@(Iphone.Name)</a>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="price price-inline">
+                                                            <p class="price-well">
+                                                                @(Iphone.PromotionPrice > 0 ? Iphone.PromotionPrice : Iphone.Price )
+                                                            </p>
+                                                            @if (Iphone.PromotionPrice > 0)
+                                                            {
+                                                                <p class="price-before">
+                                                                    @Iphone.Price
+                                                                </p>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <p class="price-before">
+
+                                                                </p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+
+                                    </div>
+                                    <div id="menu3" class="tab-pane fade">
+                                        @{
+
+                                            var viewproductXiaomi = (IEnumerable<TeduShop.Web.Models.ProductViewModel>)ViewBag.viewproductXiaomi;
+                                            foreach (var Iphone in viewproductXiaomi)
+                                            {
+                                                var url = "/" + Iphone.Alias + ".p-" + Iphone.ID + ".html";
+                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                                    <div class="row">
+                                                        <div class="item-product hover-action-product style-view-2 list-item clearfix">
+                                                            <span class="status-product bg-red">HOT</span>
+                                                            <div class="img bg-img-112" title="@(Iphone.Name)">
+                                                                <a href="@url" title="@(Iphone.Name)">
+                                                                    <img src="@(Iphone.Image)" alt="@(Iphone.Name)" class="img-product">
+                                                                </a>
+                                                            </div>
+                                                            <div class="action-product bg-danger-main">
+                                                                <a href="@url" class="item-action">
+                                                                    <span class="fa fa-search"></span>
+                                                                </a>
+                                                                <a class=" btn-quickview" data-toggle="modal" data-target="#QuickView" data-placement="left" title="Xem nhanh">
+                                                                    <i class="fa fa-shopping-cart"></i>
+                                                                </a>
+                                                                <a href="javascript://" class="item-action btn-compare" product-id="110">
+                                                                    <span class="fa fa-retweet"></span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="info">
+                                                            <h4 class="title-info">
+                                                                <a href="@url">@(Iphone.Name)</a>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="price price-inline">
+                                                            <p class="price-well">
+                                                                @(Iphone.PromotionPrice > 0 ? Iphone.PromotionPrice : Iphone.Price )
+                                                            </p>
+                                                            @if (Iphone.PromotionPrice > 0)
+                                                            {
+                                                                <p class="price-before">
+                                                                    @Iphone.Price
+                                                                </p>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <p class="price-before">
+
+                                                                </p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End menu-Category-->
+        <div class="sec sec-list__baner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="list-baner__bn">
+                            <div class="avt">
+                                <a href="">
+                                    <img src="/Assets/client/uploads/product-baner1.jpg" alt="demo">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="list-baner__bn">
+                            <div class="avt">
+                                <a href="#">
+                                    <img src="/Assets/client/uploads/custom-b3.jpg" alt="demo">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="list-baner__bn">
+                            <div class="avt">
+                                <a href="">
+                                    <img src="/Assets/client/uploads/product-baner1.jpg" alt="demo">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <!--menu xu huong thi truong-->
+            <div class="content-row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="box-product ">
+                                <div class="tab-product">
+                                    <ul class="nav_title clearfix">
+                                        <li role="presentation" class="active">
+                                            <a href="#">Xu hướng thị trường</a>
+                                        </li>
+                                    </ul>
+                                    <div class="nav__slider nav-slider__product_2">
+                                        <div class="nav prev">
+                                            <span class="icon fa fa-angle-left"></span>
+                                        </div>
+                                        <div class="nav next">
+                                            <span class="icon fa fa-angle-right"></span>
+                                        </div>
+                                    </div>
+                                    <div class="content-tab-product">
+                                        <div class="tab-content content">
+                                            <div id="box-product" class="tab-content-pane active">
+                                                <div class="slider__product_2">
+                                                @{
+                                                    var productModelHot = (IEnumerable
+                                                        <TeduShop.Web.Models.ProductViewModel>) ViewBag.productModelHot;
+                                                    foreach (var productHot in productModelHot)
+                                                    {
+                                                        var url = "/" + productHot.Alias + ".p-" + productHot.ID + ".html";
+                                                        <div class="item">
+                                                            <div class="item-product hover-action-product style-view-2   clearfix">
+                                                                <span class="status-product bg-red">HOT</span>
+                                                                <div class="col-xs-6 img bg-img-113" title="@productHot.Name">
+                                                                    <a href="@url" title="Điện thoại di động Sam Sung J7">
+                                                                        <img src="@productHot.Image" alt="@productHot.Name" class="img-product">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-xs-6 info">
+                                                                    <h4 class="title-product ">
+                                                                        <a  class="pk-spname" href="@url">@productHot.Name</a>
+                                                                    </h4>
+                                                                    <div class="price price-inline">
+
+                                                                        <p class="price-well">
+                                                                            @(productHot.PromotionPrice > 0 ? productHot.PromotionPrice : productHot.Price )
+                                                                        </p>
+                                                                        @if (productHot.PromotionPrice > 0)
+                                                                        {
+                                                                            <p class="price-before">
+                                                                                @productHot.Price
+                                                                            </p>
+
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <p class="price-before">
+
+                                                                            </p>
+                                                                        }
+                                                                    </div>
+                                                                    <div class="desc-product-thumb">
+                                                                        <p>@productHot.MetaDescription</p>
+                                                                        <p>tình trạng : @(productHot.Quantity > 0 ? "còn hàng" : "hết hàng")</p>
+                                                                        <p>Bảo hành : @productHot.Warranty</p>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                <div class="action-product bg-danger-main">
+                                                                    <a href="@url" class="item-action">
+                                                                        <span class="fa fa-search "></span>
+                                                                    </a>
+                                                                    <a class="btnAddToCart" data-id="@productHot.ID" data-placement="left" title="Mua ngay">
+                                                                        <i class="fa fa-shopping-cart"></i>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                                </div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end menu xu huong thi truong-->
+            <section class="sec sec-agency">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <div class="box-agency">
+                                <div class="box-agency__title">
+                                    Chi nhánh
+                                </div>
+                                <div class="box-agency__list">
+                                    <ul>
+                                        <li>
+                                            <a href="">
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                Ngõ 63, Đường Lê Đức Thọ, Nam Từ Liêm, Hà Nội,  (<b>0968 168 584</b>)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                Ngõ 15, làng phú đô, Mễ Trì, Nam Từ Liêm, Hà Nội(<b>0968 354 454</b>)
+                                            </a>
+                                        </li>
+                                       
+                                    
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-8 col-xs-12">
+                            <div class="item-block" data-action="partners/Partners/index" data-method="get">
+                                <div class="tab-brand">
+                                    <ul class="nav_title clearfix" id="mytabs">
+                                        <li>
+                                            <a href="javacrip:void(0)" data-toggle="tab">THƯƠNG HIỆU </a>
+                                        </li>
+                                    </ul>
+                                    <div class="nav__slider nav-slider__product_3">
+                                        <div class="nav prev">
+                                            <span class="icon fa fa-angle-left"></span>
+                                        </div>
+                                        <div class="nav next">
+                                            <span class="icon fa fa-angle-right"></span>
+                                        </div>
+                                    </div>
+                                    <div class="slider__brand">
+                                        <div class="item">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a class="item-brand">
+                                                        <img src="/Assets/client/uploads/apple.png" alt=apple">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a class="item-brand">
+                                                        <img src="/Assets/client/uploads/microsof-microsoft.png" alt=apple">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a class="item-brand">
+                                                        <img src="/Assets/client/uploads/sony-sony.png" alt=apple">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a class="item-brand">
+                                                        <img src="/Assets/client/uploads/microsof-microsoft.png" alt=apple">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a class="item-brand">
+                                                        <img src="/Assets/client/uploads/sony-sony.png" alt=apple">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a class="item-brand">
+                                                        <img src="/Assets/client/uploads/apple.png" alt=apple">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a class="item-brand">
+                                                        <img src="/Assets/client/uploads/microsof-microsoft.png" alt=apple">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a class="item-brand">
+                                                        <img src="/Assets/client/uploads/apple.png" alt=apple">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
